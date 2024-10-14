@@ -1,6 +1,6 @@
-import 'package:develop_design_system/DesignSystem/Components/LinkedLabel/linked_label_view_model.dart';
-import 'package:develop_design_system/DesignSystem/shared/colors.dart';
-import 'package:develop_design_system/DesignSystem/shared/styles.dart';
+import 'package:Design_System/DesignSystem/Components/LinkedLabel/linked_label_view_model.dart';
+import 'package:Design_System/DesignSystem/shared/colors.dart';
+import 'package:Design_System/DesignSystem/shared/styles.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 

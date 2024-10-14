@@ -1,5 +1,5 @@
-import 'package:develop_design_system/DesignSystem/Components/Tab/tab.dart';
-import 'package:develop_design_system/DesignSystem/Components/Tab/tab_view_model.dart';
+import 'package:Design_System/DesignSystem/Components/Tab/tab.dart';
+import 'package:Design_System/DesignSystem/Components/Tab/tab_view_model.dart';
 import 'package:flutter/material.dart';
 
 class TabPage extends StatelessWidget {

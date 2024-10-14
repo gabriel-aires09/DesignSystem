@@ -1,5 +1,5 @@
-import 'package:develop_design_system/DesignSystem/Components/BottomTabBar/bottom_tab_bar.dart';
-import 'package:develop_design_system/DesignSystem/Components/BottomTabBar/bottom_tab_bar_view_model.dart';
+import 'package:Design_System/DesignSystem/Components/BottomTabBar/bottom_tab_bar.dart';
+import 'package:Design_System/DesignSystem/Components/BottomTabBar/bottom_tab_bar_view_model.dart';
 import 'package:flutter/material.dart';
 
 class BottomTabBarPage extends StatefulWidget {

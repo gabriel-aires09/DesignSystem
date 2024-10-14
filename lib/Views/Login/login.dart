@@ -1,10 +1,10 @@
-import 'package:develop_design_system/DesignSystem/Components/Buttons/ActionButton/action_button.dart';
-import 'package:develop_design_system/DesignSystem/Components/Buttons/ActionButton/action_button_view_model.dart';
-import 'package:develop_design_system/DesignSystem/Components/InputField/input_text.dart';
-import 'package:develop_design_system/DesignSystem/Components/InputField/input_text_view_model.dart';
-import 'package:develop_design_system/DesignSystem/Components/LinkedLabel/linked_label.dart';
-import 'package:develop_design_system/DesignSystem/Components/LinkedLabel/linked_label_view_model.dart';
-import 'package:develop_design_system/Views/Profile/profile.dart';
+import 'package:Design_System/DesignSystem/Components/Buttons/ActionButton/action_button.dart';
+import 'package:Design_System/DesignSystem/Components/Buttons/ActionButton/action_button_view_model.dart';
+import 'package:Design_System/DesignSystem/Components/InputField/input_text.dart';
+import 'package:Design_System/DesignSystem/Components/InputField/input_text_view_model.dart';
+import 'package:Design_System/DesignSystem/Components/LinkedLabel/linked_label.dart';
+import 'package:Design_System/DesignSystem/Components/LinkedLabel/linked_label_view_model.dart';
+import 'package:Design_System/Views/Profile/profile.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
