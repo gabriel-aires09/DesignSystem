@@ -1,5 +1,5 @@
-import 'package:develop_design_system/DesignSystem/Components/InputField/input_text.dart';
-import 'package:develop_design_system/DesignSystem/Components/InputField/input_text_view_model.dart';
+import 'package:Design_System/DesignSystem/Components/InputField/input_text.dart';
+import 'package:Design_System/DesignSystem/Components/InputField/input_text_view_model.dart';
 import 'package:flutter/material.dart';
 
 class InputFieldPage extends StatelessWidget {
