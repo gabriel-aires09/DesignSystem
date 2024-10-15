@@ -4,6 +4,7 @@ import 'package:Design_System/DesignSystem/Components/InputField/input_text.dart
 import 'package:Design_System/DesignSystem/Components/InputField/input_text_view_model.dart';
 import 'package:Design_System/DesignSystem/Components/LinkedLabel/linked_label.dart';
 import 'package:Design_System/DesignSystem/Components/LinkedLabel/linked_label_view_model.dart';
+import 'package:Design_System/DesignSystem/shared/colors.dart';
 import 'package:Design_System/DesignSystem/shared/ui_helper.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -146,7 +147,7 @@ class _SignUpPageState extends State<SignUpPage> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20.0),
           ),
-          checkColor: Colors.amber,
+          checkColor: checkBoxColor,
           onChanged: (value) {
             setState(() {
               acceptedTerms = value!;
@@ -176,7 +177,7 @@ class _SignUpPageState extends State<SignUpPage> {
           'Already Have An Account?',
           style: TextStyle(
             fontSize: 16,
-            color: Colors.black,
+            color: blackTextColor,
             fontWeight: FontWeight.w600,
           ),
         ),

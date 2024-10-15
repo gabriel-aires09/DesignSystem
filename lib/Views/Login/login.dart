@@ -4,8 +4,10 @@ import 'package:Design_System/DesignSystem/Components/InputField/input_text.dart
 import 'package:Design_System/DesignSystem/Components/InputField/input_text_view_model.dart';
 import 'package:Design_System/DesignSystem/Components/LinkedLabel/linked_label.dart';
 import 'package:Design_System/DesignSystem/Components/LinkedLabel/linked_label_view_model.dart';
+import 'package:Design_System/DesignSystem/shared/colors.dart';
 import 'package:Design_System/DesignSystem/shared/ui_helper.dart';
 import 'package:Design_System/Views/Profile/profile.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -109,7 +111,9 @@ class _LoginPageState extends State<LoginPage> {
             fullText: 'Forgot Password',
             linkedText: 'Forgot Password',
             onLinkTap: () {
-              print('Esqueceu a senha?');
+              if (kDebugMode) {
+                print('Esqueceu a senha?');
+              }
             },
           ),
         ),
@@ -140,7 +144,7 @@ class _LoginPageState extends State<LoginPage> {
       'Don\'t Have An Account?',
       style: TextStyle(
         fontSize: 16,
-        color: Colors.black,
+        color: darkPrimaryBaseColorLight,
         fontWeight: FontWeight.w600,
       ),
     );

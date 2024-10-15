@@ -1,5 +1,6 @@
 import 'package:Design_System/DesignSystem/Components/BottomTabBar/bottom_tab_bar.dart';
 import 'package:Design_System/DesignSystem/Components/BottomTabBar/bottom_tab_bar_view_model.dart';
+import 'package:Design_System/DesignSystem/shared/colors.dart';
 import 'package:Design_System/DesignSystem/shared/styles.dart';
 import 'package:Design_System/DesignSystem/shared/ui_helper.dart';
 import 'package:Design_System/Views/Login/login.dart';
@@ -39,7 +40,7 @@ class ProfilePage extends StatelessWidget {
       title: const Text('Profile'),
       titleTextStyle: const TextStyle(
         fontFamily: 'Inter',
-        color: Colors.black,
+        color: blackTextColor,
         fontSize: 34,
         fontWeight: FontWeight.bold,
       ),
@@ -74,7 +75,7 @@ class ProfilePage extends StatelessWidget {
                 'Amanda Doe',
                 style: TextStyle(
                   fontFamily: 'Inter',
-                  color: Colors.black,
+                  color: blackTextColor,
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
@@ -83,7 +84,7 @@ class ProfilePage extends StatelessWidget {
                 'amanda@gmail.com',
                 style: TextStyle(
                   fontFamily: 'Inter',
-                  color: Colors.grey,
+                  color: greyTextColor,
                   fontSize: 16,
                   fontWeight: FontWeight.normal,
                 ),
@@ -123,7 +124,7 @@ class ProfilePage extends StatelessWidget {
         child: Text(
           'Logout',
           style: paragraph1Regular.copyWith(
-            color: Colors.red,
+            color: redTextColor,
           ),
         ),
       ),
