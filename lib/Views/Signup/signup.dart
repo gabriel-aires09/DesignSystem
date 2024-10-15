@@ -4,6 +4,7 @@ import 'package:Design_System/DesignSystem/Components/InputField/input_text.dart
 import 'package:Design_System/DesignSystem/Components/InputField/input_text_view_model.dart';
 import 'package:Design_System/DesignSystem/Components/LinkedLabel/linked_label.dart';
 import 'package:Design_System/DesignSystem/Components/LinkedLabel/linked_label_view_model.dart';
+import 'package:Design_System/DesignSystem/shared/ui_helper.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -44,7 +45,8 @@ class _SignUpPageState extends State<SignUpPage> {
                   fit: BoxFit.cover,
                 ),
               ),
-              const SizedBox(height: 64),
+              
+              verticalSpaceLarge,
               StyledInputField.instantiate(
                 viewModel: InputTextViewModel(
                   controller: emailController,
@@ -60,7 +62,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   },
                 ),
               ),
-              const SizedBox(height: 16),
+              verticalSpaceSmall,
               StyledInputField.instantiate(
                 viewModel: InputTextViewModel(
                   controller: passwordController,
@@ -75,7 +77,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   },
                 ),
               ),
-              const SizedBox(height: 16),
+              verticalSpaceSmall,
               StyledInputField.instantiate(
                 viewModel: InputTextViewModel(
                   controller: confirmPasswordController,
@@ -92,7 +94,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   },
                 ),
               ),
-              const SizedBox(height: 24),
+              verticalSpaceRegular,
               ActionButton.instantiate(
                 viewModel: ActionButtonViewModel(
                   style: ActionButtonStyle.primary,
@@ -106,7 +108,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   },
                 ),
               ),
-              const SizedBox(height: 16),
+              verticalSpaceSmall,
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -133,7 +135,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ],
               ),
-              const SizedBox(height: 96),
+              verticalSpaceExtraLarge,
               const Text(
                 'Already Have An Account?',
                 style: TextStyle(
@@ -142,7 +144,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              const SizedBox(height: 24),
+              verticalSpaceRegular,
               SizedBox(
                 width: 73,
                 child: ActionButton.instantiate(

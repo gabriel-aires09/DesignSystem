@@ -14,6 +14,7 @@ class StyledInputField extends StatefulWidget {
   }
 }
 
+
 class StyledInputFieldState extends State<StyledInputField> {
   late bool obscureText;
   String? errorMsg;

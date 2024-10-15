@@ -4,6 +4,7 @@ import 'package:Design_System/DesignSystem/Components/InputField/input_text.dart
 import 'package:Design_System/DesignSystem/Components/InputField/input_text_view_model.dart';
 import 'package:Design_System/DesignSystem/Components/LinkedLabel/linked_label.dart';
 import 'package:Design_System/DesignSystem/Components/LinkedLabel/linked_label_view_model.dart';
+import 'package:Design_System/DesignSystem/shared/ui_helper.dart';
 import 'package:Design_System/Views/Profile/profile.dart';
 import 'package:flutter/material.dart';
 
@@ -41,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
                   fit: BoxFit.cover,
                 ),
               ),
-              const SizedBox(height: 64),
+              verticalSpaceLarge,
               StyledInputField.instantiate(
                 viewModel: InputTextViewModel(
                   controller: emailController,
@@ -57,7 +58,7 @@ class _LoginPageState extends State<LoginPage> {
                   },
                 ),
               ),
-              const SizedBox(height: 16),
+              verticalSpaceSmall,
               StyledInputField.instantiate(
                 viewModel: InputTextViewModel(
                   controller: passwordController,
@@ -72,7 +73,7 @@ class _LoginPageState extends State<LoginPage> {
                   },
                 ),
               ),
-              const SizedBox(height: 24),
+              verticalSpaceRegular,
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -87,7 +88,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ],
               ),
-              const SizedBox(height: 24),
+              verticalSpaceRegular,
               ActionButton.instantiate(
                 viewModel: ActionButtonViewModel(
                   style: ActionButtonStyle.primary,
@@ -103,7 +104,7 @@ class _LoginPageState extends State<LoginPage> {
                   },
                 ),
               ),
-              const SizedBox(height: 96),
+              verticalSpaceExtraLarge,
               const Text(
                 'Don\'t Have An Account?',
                 style: TextStyle(
@@ -112,7 +113,7 @@ class _LoginPageState extends State<LoginPage> {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              const SizedBox(height: 24),
+              verticalSpaceRegular,
               SizedBox(
                 width: 73,
                 child: ActionButton.instantiate(
