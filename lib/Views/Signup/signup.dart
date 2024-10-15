@@ -18,8 +18,7 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController =
-      TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool acceptedTerms = false;
 
@@ -34,134 +33,168 @@ class _SignUpPageState extends State<SignUpPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
-                margin: const EdgeInsets.only(bottom: 32),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(24.0),
-                ),
-                clipBehavior: Clip.hardEdge,
-                child: Image.asset(
-                  'assets/148x148.png',
-                  fit: BoxFit.cover,
-                ),
-              ),
-              
+              _buildImage(),
               verticalSpaceLarge,
-              StyledInputField.instantiate(
-                viewModel: InputTextViewModel(
-                  controller: emailController,
-                  placeholder: 'E-mail',
-                  password: false,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'This field is required';
-                    } else if (!RegExp(r'^[a-zA-Z]+$').hasMatch(value)) {
-                      return 'Letters only are allowed!';
-                    }
-                    return null;
-                  },
-                ),
-              ),
+              _buildEmailInput(),
               verticalSpaceSmall,
-              StyledInputField.instantiate(
-                viewModel: InputTextViewModel(
-                  controller: passwordController,
-                  placeholder: 'Password',
-                  password: true,
-                  suffixIcon: const Icon(Icons.remove_red_eye),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'This field is required';
-                    }
-                    return null;
-                  },
-                ),
-              ),
+              _buildPasswordInput(),
               verticalSpaceSmall,
-              StyledInputField.instantiate(
-                viewModel: InputTextViewModel(
-                  controller: confirmPasswordController,
-                  placeholder: 'Confirm Password',
-                  password: false,
-                  suffixIcon: const Icon(Icons.remove_red_eye),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'This field is required';
-                    } else if (value != passwordController.text) {
-                      return 'The passwords do not match';
-                    }
-                    return null;
-                  },
-                ),
-              ),
+              _buildConfirmPasswordInput(),
               verticalSpaceRegular,
-              ActionButton.instantiate(
-                viewModel: ActionButtonViewModel(
-                  style: ActionButtonStyle.primary,
-                  size: ActionButtonSize.large,
-                  text: 'Sign Up',
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      // Handle sign up logic here
-                      Navigator.pushReplacementNamed(context, '/');
-                    }
-                  },
-                ),
-              ),
+              _buildSignUpButton(),
               verticalSpaceSmall,
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Checkbox(
-                      value: acceptedTerms,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      checkColor: Colors.amber,
-                      onChanged: (value) {
-                        setState(() {
-                          acceptedTerms = value!;
-                        });
-                      }),
-                  LinkedLabel.instantiate(
-                    viewModel: LinkedLabelViewModel(
-                        fullText: 'I have read and agree Terms & Services',
-                        linkedText: 'Terms & Services',
-                        onLinkTap: () {
-                          if (kDebugMode) {
-                            print('Tudo liberado!');
-                          }
-                        }),
-                  ),
-                ],
-              ),
+              _buildCheckboxWithLabel(),
               verticalSpaceExtraLarge,
-              const Text(
-                'Already Have An Account?',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              verticalSpaceRegular,
-              SizedBox(
-                width: 73,
-                child: ActionButton.instantiate(
-                  viewModel: ActionButtonViewModel(
-                    style: ActionButtonStyle.primary,
-                    size: ActionButtonSize.small,
-                    text: 'Login',
-                    onPressed: () {
-                      Navigator.pushReplacementNamed(context, '/');
-                    },
-                  ),
-                ),
-              ),
+              _buildCenteredLoginSection(),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildImage() {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 32),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(24.0),
+      ),
+      clipBehavior: Clip.hardEdge,
+      child: Image.asset(
+        'assets/148x148.png',
+        fit: BoxFit.cover,
+      ),
+    );
+  }
+
+  Widget _buildEmailInput() {
+    return StyledInputField.instantiate(
+      viewModel: InputTextViewModel(
+        controller: emailController,
+        placeholder: 'E-mail',
+        password: false,
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'This field is required';
+          } else if (!RegExp(r'^[a-zA-Z]+$').hasMatch(value)) {
+            return 'Letters only are allowed!';
+          }
+          return null;
+        },
+      ),
+    );
+  }
+
+  Widget _buildPasswordInput() {
+    return StyledInputField.instantiate(
+      viewModel: InputTextViewModel(
+        controller: passwordController,
+        placeholder: 'Password',
+        password: true,
+        suffixIcon: const Icon(Icons.remove_red_eye),
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'This field is required';
+          }
+          return null;
+        },
+      ),
+    );
+  }
+
+  Widget _buildConfirmPasswordInput() {
+    return StyledInputField.instantiate(
+      viewModel: InputTextViewModel(
+        controller: confirmPasswordController,
+        placeholder: 'Confirm Password',
+        password: false,
+        suffixIcon: const Icon(Icons.remove_red_eye),
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'This field is required';
+          } else if (value != passwordController.text) {
+            return 'The passwords do not match';
+          }
+          return null;
+        },
+      ),
+    );
+  }
+
+  Widget _buildSignUpButton() {
+    return ActionButton.instantiate(
+      viewModel: ActionButtonViewModel(
+        style: ActionButtonStyle.primary,
+        size: ActionButtonSize.large,
+        text: 'Sign Up',
+        onPressed: () {
+          if (_formKey.currentState!.validate()) {
+            // Handle sign up logic here
+            Navigator.pushReplacementNamed(context, '/');
+          }
+        },
+      ),
+    );
+  }
+
+  Widget _buildCheckboxWithLabel() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Checkbox(
+          value: acceptedTerms,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          checkColor: Colors.amber,
+          onChanged: (value) {
+            setState(() {
+              acceptedTerms = value!;
+            });
+          },
+        ),
+        LinkedLabel.instantiate(
+          viewModel: LinkedLabelViewModel(
+            fullText: 'I have read and agree Terms & Services',
+            linkedText: 'Terms & Services',
+            onLinkTap: () {
+              if (kDebugMode) {
+                print('Tudo liberado!');
+              }
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildCenteredLoginSection() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Text(
+          'Already Have An Account?',
+          style: TextStyle(
+            fontSize: 16,
+            color: Colors.black,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        verticalSpaceRegular,
+        SizedBox(
+          width: 73,
+          child: ActionButton.instantiate(
+            viewModel: ActionButtonViewModel(
+              style: ActionButtonStyle.primary,
+              size: ActionButtonSize.small,
+              text: 'Login',
+              onPressed: () {
+                Navigator.pushReplacementNamed(context, '/');
+              },
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

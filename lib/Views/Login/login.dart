@@ -31,104 +31,132 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
-                margin: const EdgeInsets.only(bottom: 32),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(24.0),
-                ),
-                clipBehavior: Clip.hardEdge,
-                child: Image.asset(
-                  'assets/148x148.png',
-                  fit: BoxFit.cover,
-                ),
-              ),
+              _buildLogo(),
               verticalSpaceLarge,
-              StyledInputField.instantiate(
-                viewModel: InputTextViewModel(
-                  controller: emailController,
-                  placeholder: 'E-mail',
-                  password: false,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Esse campo é obrigatório';
-                    } else if (!RegExp(r'^[a-zA-Z]+$').hasMatch(value)) {
-                      return 'Somente letras são permitidas!';
-                    }
-                    return null;
-                  },
-                ),
-              ),
+              _buildEmailField(),
               verticalSpaceSmall,
-              StyledInputField.instantiate(
-                viewModel: InputTextViewModel(
-                  controller: passwordController,
-                  placeholder: 'Password',
-                  password: true,
-                  suffixIcon: const Icon(Icons.remove_red_eye),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Esse campo é obrigatório';
-                    }
-                    return null;
-                  },
-                ),
-              ),
+              _buildPasswordField(),
               verticalSpaceRegular,
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  LinkedLabel.instantiate(
-                    viewModel: LinkedLabelViewModel(
-                      fullText: 'Forgot Password',
-                      linkedText: 'Forgot Password',
-                      onLinkTap: () {
-                        print('Esqueceu a senha?');
-                      },
-                    ),
-                  ),
-                ],
-              ),
+              _buildForgotPasswordLabel(),
               verticalSpaceRegular,
-              ActionButton.instantiate(
-                viewModel: ActionButtonViewModel(
-                  style: ActionButtonStyle.primary,
-                  size: ActionButtonSize.large,
-                  text: 'Login',
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => ProfilePage()),
-                      );
-                    }
-                  },
-                ),
-              ),
+              _buildLoginButton(context),
               verticalSpaceExtraLarge,
-              const Text(
-                'Don\'t Have An Account?',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
+              _buildSignUpPrompt(),
               verticalSpaceRegular,
-              SizedBox(
-                width: 73,
-                child: ActionButton.instantiate(
-                  viewModel: ActionButtonViewModel(
-                    style: ActionButtonStyle.primary,
-                    size: ActionButtonSize.small,
-                    text: 'Sign Up',
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/signup');
-                    },
-                  ),
-                ),
-              ),
+              _buildSignUpButton(context),
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildLogo() {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 32),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(24.0),
+      ),
+      clipBehavior: Clip.hardEdge,
+      child: Image.asset(
+        'assets/148x148.png',
+        fit: BoxFit.cover,
+      ),
+    );
+  }
+
+  Widget _buildEmailField() {
+    return StyledInputField.instantiate(
+      viewModel: InputTextViewModel(
+        controller: emailController,
+        placeholder: 'E-mail',
+        password: false,
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'Esse campo é obrigatório';
+          } else if (!RegExp(r'^[a-zA-Z]+$').hasMatch(value)) {
+            return 'Somente letras são permitidas!';
+          }
+          return null;
+        },
+      ),
+    );
+  }
+
+  Widget _buildPasswordField() {
+    return StyledInputField.instantiate(
+      viewModel: InputTextViewModel(
+        controller: passwordController,
+        placeholder: 'Password',
+        password: true,
+        suffixIcon: const Icon(Icons.remove_red_eye),
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'Esse campo é obrigatório';
+          }
+          return null;
+        },
+      ),
+    );
+  }
+
+  Widget _buildForgotPasswordLabel() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        LinkedLabel.instantiate(
+          viewModel: LinkedLabelViewModel(
+            fullText: 'Forgot Password',
+            linkedText: 'Forgot Password',
+            onLinkTap: () {
+              print('Esqueceu a senha?');
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildLoginButton(BuildContext context) {
+    return ActionButton.instantiate(
+      viewModel: ActionButtonViewModel(
+        style: ActionButtonStyle.primary,
+        size: ActionButtonSize.large,
+        text: 'Login',
+        onPressed: () {
+          if (_formKey.currentState!.validate()) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ProfilePage()),
+            );
+          }
+        },
+      ),
+    );
+  }
+
+  Widget _buildSignUpPrompt() {
+    return const Text(
+      'Don\'t Have An Account?',
+      style: TextStyle(
+        fontSize: 16,
+        color: Colors.black,
+        fontWeight: FontWeight.w600,
+      ),
+    );
+  }
+
+  Widget _buildSignUpButton(BuildContext context) {
+    return SizedBox(
+      width: 73,
+      child: ActionButton.instantiate(
+        viewModel: ActionButtonViewModel(
+          style: ActionButtonStyle.primary,
+          size: ActionButtonSize.small,
+          text: 'Sign Up',
+          onPressed: () {
+            Navigator.pushNamed(context, '/signup');
+          },
         ),
       ),
     );

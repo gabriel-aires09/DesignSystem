@@ -18,50 +18,32 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Profile'),
-        titleTextStyle: const TextStyle(
-          fontFamily: 'Inter',
-          color: Colors.black,
-          fontSize: 34,
-          fontWeight: FontWeight.bold,
-        ),
-        titleSpacing: 30,
-      ),
+      appBar: _buildAppBar(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
             _buildProfileHeader(),
-            const SizedBox(height: 32),
+            verticalSpaceRegular,
             ...functions.map((name) => _buildFunctionItem(name)),
             _buildLogoutButton(context),
           ],
         ),
       ),
-      bottomNavigationBar: BottomTabBar.instantiate(
-        currentIndex: 3,
-        viewModel: BottomTabBarViewModel(
-          bottomTabs: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: "Home",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.message),
-              label: "Messages",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.label),
-              label: "Label",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: "Profile",
-            ),
-          ],
-        ),
+      bottomNavigationBar: _buildBottomNavigationBar(),
+    );
+  }
+
+  AppBar _buildAppBar() {
+    return AppBar(
+      title: const Text('Profile'),
+      titleTextStyle: const TextStyle(
+        fontFamily: 'Inter',
+        color: Colors.black,
+        fontSize: 34,
+        fontWeight: FontWeight.bold,
       ),
+      titleSpacing: 30,
     );
   }
 
@@ -144,6 +126,32 @@ class ProfilePage extends StatelessWidget {
             color: Colors.red,
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildBottomNavigationBar() {
+    return BottomTabBar.instantiate(
+      currentIndex: 3,
+      viewModel: BottomTabBarViewModel(
+        bottomTabs: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: "Home",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.message),
+            label: "Messages",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.label),
+            label: "Label",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: "Profile",
+          ),
+        ],
       ),
     );
   }
