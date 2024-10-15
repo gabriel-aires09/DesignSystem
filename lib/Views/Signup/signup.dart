@@ -19,7 +19,8 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool acceptedTerms = false;
 
@@ -34,17 +35,40 @@ class _SignUpPageState extends State<SignUpPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              _buildImage(),
+              _buildImage(assetPath: 'assets/148x148.png'),
+              
               verticalSpaceLarge,
-              _buildEmailInput(),
+              _buildEmailInput(
+                  emailController: emailController,
+                  placeholder: 'Email',
+                  isPassword: false
+              ),
+              
               verticalSpaceSmall,
-              _buildPasswordInput(),
+              _buildPasswordInput(
+                controller: passwordController,
+                placeholder: 'Password',
+                isPassword: true,
+                suffixIcon: const Icon(Icons.remove_red_eye)
+              ),
+              
               verticalSpaceSmall,
-              _buildConfirmPasswordInput(),
+              _buildConfirmPasswordInput(
+                controller: confirmPasswordController, 
+                placeholder: 'Confirm Password', 
+                isPassword: true, 
+                suffixIcon: const Icon(Icons.remove_red_eye)
+              ),
+
               verticalSpaceRegular,
-              _buildSignUpButton(),
+              _buildSignUpButton(
+                context: context, 
+                text: 'Sign Up'
+              ),
+
               verticalSpaceSmall,
-              _buildCheckboxWithLabel(),
+              _buildCheckboxWithLabel(acceptedTerms),
+              
               verticalSpaceExtraLarge,
               _buildCenteredLoginSection(),
             ],
@@ -54,7 +78,7 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  Widget _buildImage() {
+  Widget _buildImage({required String assetPath}) {
     return Container(
       margin: const EdgeInsets.only(bottom: 32),
       decoration: BoxDecoration(
@@ -62,58 +86,71 @@ class _SignUpPageState extends State<SignUpPage> {
       ),
       clipBehavior: Clip.hardEdge,
       child: Image.asset(
-        'assets/148x148.png',
+        assetPath,
         fit: BoxFit.cover,
       ),
     );
   }
 
-  Widget _buildEmailInput() {
+  Widget _buildEmailInput({
+    required TextEditingController emailController,
+    required String placeholder,
+    required bool isPassword,
+  }) {
     return StyledInputField.instantiate(
       viewModel: InputTextViewModel(
-        controller: emailController,
-        placeholder: 'E-mail',
-        password: false,
-        validator: (value) {
-          if (value == null || value.isEmpty) {
-            return 'This field is required';
-          } else if (!RegExp(r'^[a-zA-Z]+$').hasMatch(value)) {
-            return 'Letters only are allowed!';
-          }
-          return null;
-        },
+          controller: emailController,
+          placeholder: placeholder,
+          password: false,
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'This field is required';
+            } else if (!RegExp(r'^[a-zA-Z]+$').hasMatch(value)) {
+              return 'Letters only are allowed!';
+            }
+            return null;
+          }),
+    );
+  }
+
+  Widget _buildPasswordInput({
+    required TextEditingController controller,
+    required String placeholder,
+    required bool isPassword,
+    Widget? suffixIcon,
+  }) {
+    return StyledInputField.instantiate(
+      viewModel: InputTextViewModel(
+          controller: controller,
+          placeholder: placeholder,
+          password: isPassword,
+          suffixIcon: suffixIcon,
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'This field is required';
+            }
+              return null;
+            },
       ),
     );
   }
 
-  Widget _buildPasswordInput() {
+  Widget _buildConfirmPasswordInput({
+    required TextEditingController controller,
+    required String placeholder,
+    required bool isPassword,
+    Widget? suffixIcon
+  }) {
     return StyledInputField.instantiate(
       viewModel: InputTextViewModel(
-        controller: passwordController,
-        placeholder: 'Password',
-        password: true,
-        suffixIcon: const Icon(Icons.remove_red_eye),
+        controller: controller,
+        placeholder: placeholder,
+        password: isPassword,
+        suffixIcon: suffixIcon,
         validator: (value) {
           if (value == null || value.isEmpty) {
             return 'This field is required';
-          }
-          return null;
-        },
-      ),
-    );
-  }
-
-  Widget _buildConfirmPasswordInput() {
-    return StyledInputField.instantiate(
-      viewModel: InputTextViewModel(
-        controller: confirmPasswordController,
-        placeholder: 'Confirm Password',
-        password: false,
-        suffixIcon: const Icon(Icons.remove_red_eye),
-        validator: (value) {
-          if (value == null || value.isEmpty) {
-            return 'This field is required';
-          } else if (value != passwordController.text) {
+          } else if (value != controller.text) {
             return 'The passwords do not match';
           }
           return null;
@@ -122,12 +159,16 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  Widget _buildSignUpButton() {
+  Widget _buildSignUpButton({
+    required BuildContext context,
+    required String text,
+    ActionButtonSize size = ActionButtonSize.large,
+  }) {
     return ActionButton.instantiate(
       viewModel: ActionButtonViewModel(
         style: ActionButtonStyle.primary,
-        size: ActionButtonSize.large,
-        text: 'Sign Up',
+        size: size,
+        text: text,
         onPressed: () {
           if (_formKey.currentState!.validate()) {
             // Handle sign up logic here
@@ -138,7 +179,7 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  Widget _buildCheckboxWithLabel() {
+  Widget _buildCheckboxWithLabel(bool acceptedTerms) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
