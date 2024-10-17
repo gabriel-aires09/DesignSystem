@@ -1,5 +1,4 @@
-import 'package:Design_System/Views/Login/login.dart';
-import 'package:Design_System/Views/Signup/signup.dart';
+import 'package:Design_System/DesignSystem/design_system.dart';
 import 'package:flutter/material.dart';
 
 

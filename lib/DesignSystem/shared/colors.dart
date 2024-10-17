@@ -71,4 +71,3 @@ const Color ultrathinMaterialColorDark = Color.fromARGB(112, 42, 42, 42);
 const Color blackTextColor = Color(0xFF000000);
 const Color redTextColor = Color(0xFFF44336);
 const Color greyTextColor = Color(0xFF9E9E9E);
-const Color checkBoxColor =  Color(0xFFFFC107);

@@ -1,12 +1,4 @@
-import 'package:Design_System/DesignSystem/Components/Buttons/ActionButton/action_button.dart';
-import 'package:Design_System/DesignSystem/Components/Buttons/ActionButton/action_button_view_model.dart';
-import 'package:Design_System/DesignSystem/Components/InputField/input_text.dart';
-import 'package:Design_System/DesignSystem/Components/InputField/input_text_view_model.dart';
-import 'package:Design_System/DesignSystem/Components/LinkedLabel/linked_label.dart';
-import 'package:Design_System/DesignSystem/Components/LinkedLabel/linked_label_view_model.dart';
-import 'package:Design_System/DesignSystem/shared/colors.dart';
-import 'package:Design_System/DesignSystem/shared/ui_helper.dart';
-import 'package:Design_System/Views/Profile/profile.dart';
+import 'package:Design_System/DesignSystem/design_system.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -34,42 +26,35 @@ class _LoginPageState extends State<LoginPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               _buildLogo('assets/148x148.png'),
-  
               _buildInputField(
-                controller: emailController, 
-                placeholder: 'E-mail', 
-                isPassword: false,),
-              
+                controller: emailController,
+                placeholder: 'E-mail',
+                isPassword: false,
+              ),
               verticalSpaceSmall,
               _buildInputField(
-                controller: passwordController,
-                placeholder: 'Password',
-                isPassword: true, 
-                suffixIcon: const Icon(Icons.remove_red_eye)
-              ),
-              
+                  controller: passwordController,
+                  placeholder: 'Password',
+                  isPassword: true,
+                  suffixIcon: const Icon(Icons.remove_red_eye)),
               verticalSpaceRegular,
               _buildLinkedLabel(
-                fullText: 'Forgot Password',
-                linkedText: 'Forgot Password'
-              ),
-              
+                  fullText: 'Forgot Password', linkedText: 'Forgot Password'),
               verticalSpaceRegular,
               _buildLoginButton(
                 context: context,
                 text: 'Login',
               ),
-              
               verticalSpaceExtraLarge,
               _buildText(
-                text: 'Don\'t Have An Account?',
-                fontSize: 16,
-                color: darkPrimaryBaseColorLight,
-                fontWeight: FontWeight.w600
-              ),
-              
+                  text: 'Don\'t Have An Account?',
+                  fontSize: 16,
+                  color: darkPrimaryBaseColorLight,
+                  fontWeight: FontWeight.w600),
               verticalSpaceRegular,
-              _buildSignUpButton(context: context, text: 'Sign Up',
+              _buildSignUpButton(
+                context: context,
+                text: 'Sign Up',
                 width: 73,
                 size: ActionButtonSize.small,
               ),
@@ -118,10 +103,8 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _buildLinkedLabel({
-    required String fullText,
-    required String linkedText
-  }) {
+  Widget _buildLinkedLabel(
+      {required String fullText, required String linkedText}) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
@@ -143,7 +126,6 @@ class _LoginPageState extends State<LoginPage> {
   Widget _buildLoginButton({
     required BuildContext context,
     required String text,
-
     double? width,
     ActionButtonSize size = ActionButtonSize.large,
   }) {
@@ -182,7 +164,7 @@ class _LoginPageState extends State<LoginPage> {
           text: text,
           width: width,
           onPressed: () {
-              Navigator.pushNamed(context, '/signup');
+            Navigator.pushNamed(context, '/signup');
           },
         ),
       ),

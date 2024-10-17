@@ -1,11 +1,4 @@
-import 'package:Design_System/DesignSystem/Components/Buttons/ActionButton/action_button.dart';
-import 'package:Design_System/DesignSystem/Components/Buttons/ActionButton/action_button_view_model.dart';
-import 'package:Design_System/DesignSystem/Components/InputField/input_text.dart';
-import 'package:Design_System/DesignSystem/Components/InputField/input_text_view_model.dart';
-import 'package:Design_System/DesignSystem/Components/LinkedLabel/linked_label.dart';
-import 'package:Design_System/DesignSystem/Components/LinkedLabel/linked_label_view_model.dart';
-import 'package:Design_System/DesignSystem/shared/colors.dart';
-import 'package:Design_System/DesignSystem/shared/ui_helper.dart';
+import 'package:Design_System/DesignSystem/design_system.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -19,8 +12,7 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController =
-      TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool acceptedTerms = false;
 
@@ -67,7 +59,7 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
 
               verticalSpaceSmall,
-              _buildCheckboxWithLabel(acceptedTerms),
+              _buildCheckboxWithLabel(),
               
               verticalSpaceExtraLarge,
               _buildCenteredLoginSection(),
@@ -179,7 +171,7 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  Widget _buildCheckboxWithLabel(bool acceptedTerms) {
+  Widget _buildCheckboxWithLabel() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -188,7 +180,7 @@ class _SignUpPageState extends State<SignUpPage> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20.0),
           ),
-          checkColor: checkBoxColor,
+          checkColor: Colors.amber,
           onChanged: (value) {
             setState(() {
               acceptedTerms = value!;
