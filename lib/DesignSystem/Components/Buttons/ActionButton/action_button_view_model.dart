@@ -24,6 +24,6 @@ class ActionButtonViewModel {
     required this.style,
     required this.text,
     required this.onPressed,
-    this.icon
+    this.icon, double? width
   });
 }

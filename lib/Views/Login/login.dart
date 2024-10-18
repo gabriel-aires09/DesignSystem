@@ -1,12 +1,4 @@
-import 'package:Design_System/DesignSystem/Components/Buttons/ActionButton/action_button.dart';
-import 'package:Design_System/DesignSystem/Components/Buttons/ActionButton/action_button_view_model.dart';
-import 'package:Design_System/DesignSystem/Components/InputField/input_text.dart';
-import 'package:Design_System/DesignSystem/Components/InputField/input_text_view_model.dart';
-import 'package:Design_System/DesignSystem/Components/LinkedLabel/linked_label.dart';
-import 'package:Design_System/DesignSystem/Components/LinkedLabel/linked_label_view_model.dart';
-import 'package:Design_System/DesignSystem/shared/colors.dart';
-import 'package:Design_System/DesignSystem/shared/ui_helper.dart';
-import 'package:Design_System/Views/Profile/profile.dart';
+import 'package:Design_System/DesignSystem/design_system.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -33,19 +25,43 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              _buildLogo(),
-              verticalSpaceLarge,
-              _buildEmailField(),
+              _buildLogo('assets/148x148.png'),
+              _buildInputField(
+                controller: emailController,
+                placeholder: 'E-mail',
+                isPassword: false,
+              ),
               verticalSpaceSmall,
-              _buildPasswordField(),
+              _buildInputField(
+                  controller: passwordController,
+                  placeholder: 'Password',
+                  isPassword: true,
+                  suffixIcon: const Icon(Icons.remove_red_eye)
+              ),
               verticalSpaceRegular,
-              _buildForgotPasswordLabel(),
+              _buildLinkedLabel(
+                  fullText: 'Forgot Password', 
+                  linkedText: 'Forgot Password'
+              ),
               verticalSpaceRegular,
-              _buildLoginButton(context),
+              _buildLoginButton(
+                context: context,
+                text: 'Login',
+              ),
               verticalSpaceExtraLarge,
-              _buildSignUpPrompt(),
+              _buildText(
+                  text: 'Don\'t Have An Account?',
+                  fontSize: 16,
+                  color: darkPrimaryBaseColorLight,
+                  fontWeight: FontWeight.w600
+                ),
               verticalSpaceRegular,
-              _buildSignUpButton(context),
+              _buildSignUpButton(
+                context: context,
+                text: 'Sign Up',
+                width: 73,
+                size: ActionButtonSize.small,
+              ),
             ],
           ),
         ),
@@ -53,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _buildLogo() {
+  Widget _buildLogo(String assetPath) {
     return Container(
       margin: const EdgeInsets.only(bottom: 32),
       decoration: BoxDecoration(
@@ -61,18 +77,24 @@ class _LoginPageState extends State<LoginPage> {
       ),
       clipBehavior: Clip.hardEdge,
       child: Image.asset(
-        'assets/148x148.png',
+        assetPath,
         fit: BoxFit.cover,
       ),
     );
   }
 
-  Widget _buildEmailField() {
+  Widget _buildInputField({
+    required TextEditingController controller,
+    required String placeholder,
+    required bool isPassword,
+    Widget? suffixIcon,
+  }) {
     return StyledInputField.instantiate(
       viewModel: InputTextViewModel(
-        controller: emailController,
-        placeholder: 'E-mail',
-        password: false,
+        controller: controller,
+        placeholder: placeholder,
+        password: isPassword,
+        suffixIcon: suffixIcon,
         validator: (value) {
           if (value == null || value.isEmpty) {
             return 'Esse campo é obrigatório';
@@ -85,31 +107,15 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _buildPasswordField() {
-    return StyledInputField.instantiate(
-      viewModel: InputTextViewModel(
-        controller: passwordController,
-        placeholder: 'Password',
-        password: true,
-        suffixIcon: const Icon(Icons.remove_red_eye),
-        validator: (value) {
-          if (value == null || value.isEmpty) {
-            return 'Esse campo é obrigatório';
-          }
-          return null;
-        },
-      ),
-    );
-  }
-
-  Widget _buildForgotPasswordLabel() {
+  Widget _buildLinkedLabel(
+      {required String fullText, required String linkedText}) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         LinkedLabel.instantiate(
           viewModel: LinkedLabelViewModel(
-            fullText: 'Forgot Password',
-            linkedText: 'Forgot Password',
+            fullText: fullText,
+            linkedText: linkedText,
             onLinkTap: () {
               if (kDebugMode) {
                 print('Esqueceu a senha?');
@@ -121,47 +127,66 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _buildLoginButton(BuildContext context) {
-    return ActionButton.instantiate(
-      viewModel: ActionButtonViewModel(
-        style: ActionButtonStyle.primary,
-        size: ActionButtonSize.large,
-        text: 'Login',
-        onPressed: () {
-          if (_formKey.currentState!.validate()) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => ProfilePage()),
-            );
-          }
-        },
-      ),
-    );
-  }
-
-  Widget _buildSignUpPrompt() {
-    return const Text(
-      'Don\'t Have An Account?',
-      style: TextStyle(
-        fontSize: 16,
-        color: darkPrimaryBaseColorLight,
-        fontWeight: FontWeight.w600,
-      ),
-    );
-  }
-
-  Widget _buildSignUpButton(BuildContext context) {
+  Widget _buildLoginButton({
+    required BuildContext context,
+    required String text,
+    double? width,
+    ActionButtonSize size = ActionButtonSize.large,
+  }) {
     return SizedBox(
-      width: 73,
+      width: width,
       child: ActionButton.instantiate(
         viewModel: ActionButtonViewModel(
           style: ActionButtonStyle.primary,
-          size: ActionButtonSize.small,
-          text: 'Sign Up',
+          size: size,
+          text: text,
+          onPressed: () {
+            if (_formKey.currentState!.validate()) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ProfilePage()),
+              );
+            }
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSignUpButton({
+    required BuildContext context,
+    required String text,
+    required double? width,
+    ActionButtonSize size = ActionButtonSize.large,
+  }) {
+    return SizedBox(
+      width: width,
+      child: ActionButton.instantiate(
+        viewModel: ActionButtonViewModel(
+          style: ActionButtonStyle.primary,
+          size: size,
+          text: text,
+          width: width,
           onPressed: () {
             Navigator.pushNamed(context, '/signup');
           },
         ),
+      ),
+    );
+  }
+
+  Widget _buildText({
+    required String text,
+    required double fontSize,
+    required Color color,
+    required FontWeight fontWeight,
+  }) {
+    return Text(
+      text,
+      style: TextStyle(
+        fontSize: fontSize,
+        color: color,
+        fontWeight: fontWeight,
       ),
     );
   }

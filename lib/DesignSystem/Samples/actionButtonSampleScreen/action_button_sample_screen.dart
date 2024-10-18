@@ -1,5 +1,4 @@
-import 'package:Design_System/DesignSystem/Components/Buttons/ActionButton/action_button.dart';
-import 'package:Design_System/DesignSystem/Components/Buttons/ActionButton/action_button_view_model.dart';
+import 'package:Design_System/DesignSystem/design_system.dart';
 import 'package:flutter/material.dart';
 
 class ActionButtonPage extends StatelessWidget {

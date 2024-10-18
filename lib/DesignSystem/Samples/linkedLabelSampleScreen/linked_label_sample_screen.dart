@@ -1,5 +1,4 @@
-import 'package:Design_System/DesignSystem/Components/LinkedLabel/linked_label.dart';
-import 'package:Design_System/DesignSystem/Components/LinkedLabel/linked_label_view_model.dart';
+import 'package:Design_System/DesignSystem/design_system.dart';
 import 'package:flutter/material.dart';
 
 class LinkedLabelPage extends StatelessWidget {

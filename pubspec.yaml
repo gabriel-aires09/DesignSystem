@@ -10,6 +10,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+design_system:
+  path: ../
+
 
 dev_dependencies:
   flutter_test:

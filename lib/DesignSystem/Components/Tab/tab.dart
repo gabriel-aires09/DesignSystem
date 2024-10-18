@@ -1,11 +1,10 @@
-import 'package:Design_System/DesignSystem/Components/Tab/tab_view_model.dart';
-import 'package:Design_System/DesignSystem/shared/colors.dart';
+import 'package:Design_System/DesignSystem/design_system.dart';
 import 'package:flutter/material.dart';
 
 class TabComponent extends StatefulWidget {
   final TabViewModel tabViewModel;
 
-  const TabComponent._({super.key, required this.tabViewModel});
+  const TabComponent._({required this.tabViewModel});
 
   @override
   State<TabComponent> createState() => _TabComponentState();
