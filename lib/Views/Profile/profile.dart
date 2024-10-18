@@ -1,70 +1,59 @@
-import 'package:Design_System/DesignSystem/Components/BottomTabBar/bottom_tab_bar.dart';
-import 'package:Design_System/DesignSystem/Components/BottomTabBar/bottom_tab_bar_view_model.dart';
-import 'package:Design_System/DesignSystem/shared/styles.dart';
-import 'package:Design_System/Views/Login/login.dart';
+import 'package:Design_System/DesignSystem/design_system.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
   ProfilePage({super.key});
 
-  final List<String> functions = [
-    'Edit Name',
-    'Shipping Info',
-    'Notification',
-    'Terms & Conditions',
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Profile'),
-        titleTextStyle: const TextStyle(
-          fontFamily: 'Inter',
-          color: Colors.black,
-          fontSize: 34,
-          fontWeight: FontWeight.bold,
-        ),
-        titleSpacing: 30,
-      ),
+      appBar: _buildAppBar(title: 'Profile'),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
-            _buildProfileHeader(),
-            const SizedBox(height: 32),
+            _buildProfileHeader(
+              assetPath: 'AvatarProfile.png', 
+              name: 'Amanda Doe', 
+              email: 'amanda@gmail.com'
+            ),
+            
+            verticalSpaceRegular,
             ...functions.map((name) => _buildFunctionItem(name)),
-            _buildLogoutButton(context),
+            _buildLogoutButton(
+              context: context, 
+              text: 'Logout'
+            ),
           ],
         ),
       ),
-      bottomNavigationBar: BottomTabBar.instantiate(
-        currentIndex: 3,
-        viewModel: BottomTabBarViewModel(
-          bottomTabs: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: "Home",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.message),
-              label: "Messages",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.label),
-              label: "Label",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: "Profile",
-            ),
-          ],
-        ),
+      bottomNavigationBar: _buildBottomNavigationBar(
+        navNameOne: 'Home',
+        navNameTwo: 'Messages',
+        navNameThree: 'Label',
+        navNameFour: 'Profile',
       ),
     );
   }
 
-  Widget _buildProfileHeader() {
+  AppBar _buildAppBar({required String title}) {
+    return AppBar(
+      title: Text(title),
+      titleTextStyle: const TextStyle(
+        fontFamily: 'Inter',
+        color: blackTextColor,
+        fontSize: 34,
+        fontWeight: FontWeight.bold,
+      ),
+      titleSpacing: 30,
+    );
+  }
+
+  Widget _buildProfileHeader({
+    required String assetPath,
+    required String name,
+    required String email,
+  }) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Row(
@@ -78,29 +67,29 @@ class ProfilePage extends StatelessWidget {
             ),
             clipBehavior: Clip.hardEdge,
             child: Image.asset(
-              'AvatarProfile.png',
+              assetPath,
               fit: BoxFit.cover,
             ),
           ),
-          const SizedBox(width: 8),
-          const Column(
+          verticalSpaceVerySmall,
+          Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Amanda Doe',
-                style: TextStyle(
+                name,
+                style: const TextStyle(
                   fontFamily: 'Inter',
-                  color: Colors.black,
+                  color: blackTextColor,
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               Text(
-                'amanda@gmail.com',
-                style: TextStyle(
+                email,
+                style: const TextStyle(
                   fontFamily: 'Inter',
-                  color: Colors.grey,
+                  color: greyTextColor,
                   fontSize: 16,
                   fontWeight: FontWeight.normal,
                 ),
@@ -125,7 +114,10 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  Widget _buildLogoutButton(BuildContext context) {
+  Widget _buildLogoutButton({
+    required BuildContext context,
+    required String text,
+    }) {	
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: GestureDetector(
@@ -138,12 +130,50 @@ class ProfilePage extends StatelessWidget {
           );
         },
         child: Text(
-          'Logout',
+          text,
           style: paragraph1Regular.copyWith(
-            color: Colors.red,
+            color: redTextColor,
           ),
         ),
       ),
     );
   }
+
+  Widget _buildBottomNavigationBar({
+    required String navNameOne,
+    required String navNameTwo,
+    required String navNameThree,
+    required String navNameFour,
+  }) {
+    return BottomTabBar.instantiate(
+      currentIndex: 3,
+      viewModel: BottomTabBarViewModel(
+        bottomTabs:  [
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.home),
+            label: navNameOne,
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.message),
+            label: navNameTwo,
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.label),
+            label: navNameThree,
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.person),
+            label: navNameFour,
+          ),
+        ],
+      ),
+    );
+  }
+
+  final List<String> functions = [
+    'Edit Profile',
+    'Change Password',
+    'Settings',
+    'Help',
+  ];
 }

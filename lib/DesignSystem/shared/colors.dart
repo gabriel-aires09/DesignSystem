@@ -25,7 +25,7 @@ const Color normalSecondaryBaseColorLight = Color(0xff7C7C7C);
 const Color darkSecondaryBaseColorLight = Color(0xff505050);
 
 const Color lightTertiaryBaseColorLight = Color(0xffFFFFFF);
-const Color normalTertiaryBaseColorLight= Color(0xffEDEEF1);
+const Color normalTertiaryBaseColorLight = Color(0xffEDEEF1);
 const Color darkTertiaryBaseColorLight = Color(0xffDDDDDD);
 
 //System colors
@@ -55,7 +55,7 @@ const Color normalSecondaryBaseColorDark = Color(0xff7C7C7C);
 const Color darkSecondaryBaseColorDark = Color(0xff505050);
 
 const Color lightTertiaryBaseColorDark = Color(0xff555555);
-const Color normalTertiaryBaseColorDark= Color(0xff333232);
+const Color normalTertiaryBaseColorDark = Color(0xff333232);
 const Color darkTertiaryBaseColorDark = Color(0xff000000);
 
 //Material colors
@@ -66,3 +66,8 @@ const Color ultrathinMaterialColorDark = Color.fromARGB(112, 42, 42, 42);
 
 //Shadow Colors
 //todo: add shadow colors
+
+// Regular Colors
+const Color blackTextColor = Color(0xFF000000);
+const Color redTextColor = Color(0xFFF44336);
+const Color greyTextColor = Color(0xFF9E9E9E);

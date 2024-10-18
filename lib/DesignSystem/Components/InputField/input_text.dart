@@ -1,4 +1,4 @@
-import 'package:Design_System/DesignSystem/Components/InputField/input_text_view_model.dart';
+import 'package:Design_System/DesignSystem/design_system.dart';
 import 'package:flutter/material.dart';
 
 class StyledInputField extends StatefulWidget {
@@ -13,6 +13,7 @@ class StyledInputField extends StatefulWidget {
     return StyledInputField._(viewModel: viewModel);
   }
 }
+
 
 class StyledInputFieldState extends State<StyledInputField> {
   late bool obscureText;
