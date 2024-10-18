@@ -13,4 +13,6 @@ export 'package:Design_System/DesignSystem/Components/LinkedLabel/linked_label.d
 export 'package:Design_System/DesignSystem/Components/LinkedLabel/linked_label_view_model.dart';
 export 'package:Design_System/Views/Profile/profile.dart';
 export 'package:Design_System/Views/Signup/signup.dart';
+export 'package:Design_System/DesignSystem/Components/Tab/tab.dart';
+export 'package:Design_System/DesignSystem/Components/Tab/tab_view_model.dart';
 

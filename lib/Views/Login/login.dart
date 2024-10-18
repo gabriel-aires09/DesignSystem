@@ -36,10 +36,13 @@ class _LoginPageState extends State<LoginPage> {
                   controller: passwordController,
                   placeholder: 'Password',
                   isPassword: true,
-                  suffixIcon: const Icon(Icons.remove_red_eye)),
+                  suffixIcon: const Icon(Icons.remove_red_eye)
+              ),
               verticalSpaceRegular,
               _buildLinkedLabel(
-                  fullText: 'Forgot Password', linkedText: 'Forgot Password'),
+                  fullText: 'Forgot Password', 
+                  linkedText: 'Forgot Password'
+              ),
               verticalSpaceRegular,
               _buildLoginButton(
                 context: context,
@@ -50,7 +53,8 @@ class _LoginPageState extends State<LoginPage> {
                   text: 'Don\'t Have An Account?',
                   fontSize: 16,
                   color: darkPrimaryBaseColorLight,
-                  fontWeight: FontWeight.w600),
+                  fontWeight: FontWeight.w600
+                ),
               verticalSpaceRegular,
               _buildSignUpButton(
                 context: context,

@@ -1,6 +1,6 @@
-import 'package:Design_System/DesignSystem/Components/BottomTabBar/bottom_tab_bar_view_model.dart';
-import 'package:Design_System/DesignSystem/shared/colors.dart';
+import 'package:Design_System/DesignSystem/design_system.dart';
 import 'package:flutter/material.dart';
+
 class BottomTabBar extends StatelessWidget {
   final BottomTabBarViewModel viewModel;
   final int currentIndex;

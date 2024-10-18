@@ -31,9 +31,9 @@ class _SignUpPageState extends State<SignUpPage> {
               
               verticalSpaceLarge,
               _buildEmailInput(
-                  emailController: emailController,
-                  placeholder: 'Email',
-                  isPassword: false
+                emailController: emailController,
+                placeholder: 'Email',
+                isPassword: false
               ),
               
               verticalSpaceSmall,
@@ -59,10 +59,16 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
 
               verticalSpaceSmall,
-              _buildCheckboxWithLabel(),
+              _buildCheckboxWithLabel(
+                fullText: 'I have read and agree Terms & Services',
+                linkedText: 'Terms & Services'
+              ),
               
               verticalSpaceExtraLarge,
-              _buildCenteredLoginSection(),
+              _buildCenteredLoginSection(
+                text: 'Already have an account?', 
+                textButton: 'Login'
+              ),
             ],
           ),
         ),
@@ -171,7 +177,10 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  Widget _buildCheckboxWithLabel() {
+  Widget _buildCheckboxWithLabel({
+    required fullText,
+    required linkedText,
+  }) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -189,8 +198,8 @@ class _SignUpPageState extends State<SignUpPage> {
         ),
         LinkedLabel.instantiate(
           viewModel: LinkedLabelViewModel(
-            fullText: 'I have read and agree Terms & Services',
-            linkedText: 'Terms & Services',
+            fullText: fullText,
+            linkedText: linkedText,
             onLinkTap: () {
               if (kDebugMode) {
                 print('Tudo liberado!');
@@ -202,13 +211,16 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  Widget _buildCenteredLoginSection() {
+  Widget _buildCenteredLoginSection({
+    required String text,
+    required String textButton
+  }) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text(
-          'Already Have An Account?',
-          style: TextStyle(
+        Text(
+          text,
+          style: const TextStyle(
             fontSize: 16,
             color: blackTextColor,
             fontWeight: FontWeight.w600,
@@ -221,7 +233,7 @@ class _SignUpPageState extends State<SignUpPage> {
             viewModel: ActionButtonViewModel(
               style: ActionButtonStyle.primary,
               size: ActionButtonSize.small,
-              text: 'Login',
+              text: textButton,
               onPressed: () {
                 Navigator.pushReplacementNamed(context, '/');
               },

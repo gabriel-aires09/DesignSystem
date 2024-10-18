@@ -1,4 +1,4 @@
-import 'package:Design_System/DesignSystem/shared/colors.dart';
+import 'package:Design_System/DesignSystem/design_system.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
