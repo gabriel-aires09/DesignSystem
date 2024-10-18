@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-design_system:
+Design_System:
   path: ../
 
 
